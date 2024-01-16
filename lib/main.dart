@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:wear_store_app/screens/home.dart';
+import 'package:wear_store_app/screens/welcome.dart';
 
 final theme = ThemeData(
   colorScheme: ColorScheme.fromSeed(
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: theme,
-      home: const HomeScreen(),
+      home: const WelcomeScreen(),
     );
   }
 }
