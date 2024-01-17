@@ -44,16 +44,16 @@ class _LoginScreenState extends State<LoginScreen> {
                         if (!_isLogin) const InputText(label: 'Firstname'),
                         if (!_isLogin)
                           const SizedBox(
-                            height: 20,
+                            height: 14,
                           ),
                         if (!_isLogin) const InputText(label: 'Lastname'),
                         if (!_isLogin)
                           const SizedBox(
-                            height: 20,
+                            height: 14,
                           ),
                         const InputText(label: 'Email address'),
                         const SizedBox(
-                          height: 20,
+                          height: 14,
                         ),
                         const InputText(
                           label: 'Password',
@@ -132,7 +132,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         semanticsLabel: "Google Icon"),
                   ),
                   const SizedBox(
-                    height: 20,
+                    height: 14,
                   ),
                   PrimaryButton(
                     label: _isLogin

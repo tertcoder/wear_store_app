@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:wear_store_app/screens/login.dart';
 import 'package:wear_store_app/widgets/shadow_main.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -88,7 +89,13 @@ class WelcomeScreen extends StatelessWidget {
                       color: Theme.of(context).colorScheme.outline,
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const LoginScreen(),
+                      ),
+                    );
+                  },
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
