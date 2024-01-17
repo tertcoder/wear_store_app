@@ -34,7 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     semanticsLabel: 'WearStore Logo',
                   ),
                   const SizedBox(
-                    height: 40,
+                    height: 28,
                   ),
                   const Form(
                     child: Column(
