@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:wear_store_app/screens/welcome.dart';
 
 final theme = ThemeData(
@@ -7,7 +6,8 @@ final theme = ThemeData(
     seedColor: const Color.fromARGB(255, 251, 146, 60),
     brightness: Brightness.light,
   ),
-  textTheme: GoogleFonts.oswaldTextTheme(),
+  // textTheme: GoogleFonts.oswaldTextTheme(),
+  fontFamily: 'Oswald',
 );
 
 void main() {
