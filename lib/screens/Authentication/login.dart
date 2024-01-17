@@ -15,6 +15,8 @@ class _LoginScreenState extends State<LoginScreen> {
   final String _google = 'assets/icons/google.svg';
   final String _facebook = 'assets/icons/facebook.svg';
 
+  bool _isLogin = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,21 +38,31 @@ class _LoginScreenState extends State<LoginScreen> {
                   const SizedBox(
                     height: 28,
                   ),
-                  const Form(
+                  Form(
                     child: Column(
                       children: [
-                        InputText(label: 'Email address'),
-                        SizedBox(
+                        if (!_isLogin) const InputText(label: 'Firstname'),
+                        if (!_isLogin)
+                          const SizedBox(
+                            height: 20,
+                          ),
+                        if (!_isLogin) const InputText(label: 'Lastname'),
+                        if (!_isLogin)
+                          const SizedBox(
+                            height: 20,
+                          ),
+                        const InputText(label: 'Email address'),
+                        const SizedBox(
                           height: 20,
                         ),
-                        InputText(
+                        const InputText(
                           label: 'Password',
                           isHide: true,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 24,
                         ),
-                        PrimaryButton(label: "Login"),
+                        PrimaryButton(label: _isLogin ? "Login" : "Sign up"),
                       ],
                     ),
                   ),
@@ -61,7 +73,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'I don’t have an account?',
+                        _isLogin
+                            ? 'I don’t have an account?'
+                            : 'Already have an account?',
                         style: TextStyle(
                           color: Theme.of(context).colorScheme.outline,
                           fontSize: 12,
@@ -79,9 +93,13 @@ class _LoginScreenState extends State<LoginScreen> {
                           splashFactory: NoSplash
                               .splashFactory, //** To disable the onTap background
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          setState(() {
+                            _isLogin = !_isLogin;
+                          });
+                        },
                         child: Text(
-                          'Sign up',
+                          _isLogin ? 'Sign up' : 'Login',
                           style: TextStyle(
                             color: Theme.of(context)
                                 .colorScheme
@@ -106,20 +124,25 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 16,
                   ),
                   PrimaryButton(
-                      label: "Log in with Google",
-                      backgroundColor:
-                          Theme.of(context).colorScheme.onInverseSurface,
-                      icon: SvgPicture.asset(_google,
-                          semanticsLabel: "Google Icon")),
+                    label:
+                        _isLogin ? "Log in with Google" : 'Sign up with Google',
+                    backgroundColor:
+                        Theme.of(context).colorScheme.onInverseSurface,
+                    icon: SvgPicture.asset(_google,
+                        semanticsLabel: "Google Icon"),
+                  ),
                   const SizedBox(
                     height: 20,
                   ),
                   PrimaryButton(
-                      label: "Log in with Facebook",
-                      backgroundColor:
-                          Theme.of(context).colorScheme.onInverseSurface,
-                      icon: SvgPicture.asset(_facebook,
-                          semanticsLabel: "Facebook Icon")),
+                    label: _isLogin
+                        ? "Log in with Facebook"
+                        : "Sign up with Facebook",
+                    backgroundColor:
+                        Theme.of(context).colorScheme.onInverseSurface,
+                    icon: SvgPicture.asset(_facebook,
+                        semanticsLabel: "Facebook Icon"),
+                  ),
                   const Spacer(),
                 ],
               ),
