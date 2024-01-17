@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:wear_store_app/screens/login.dart';
@@ -91,8 +92,13 @@ class WelcomeScreen extends StatelessWidget {
                   ),
                   onPressed: () {
                     Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => const LoginScreen(),
+                      // MaterialPageRoute(
+                      //   builder: (context) => const LoginScreen(),
+                      // ),
+                      CupertinoPageRoute(
+                        builder: (context) {
+                          return const LoginScreen();
+                        },
                       ),
                     );
                   },
