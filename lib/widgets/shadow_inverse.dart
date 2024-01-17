@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ShadowMain extends StatelessWidget {
-  const ShadowMain({
+class ShadowInverse extends StatelessWidget {
+  const ShadowInverse({
     super.key,
     required this.child,
     required this.borderRadius,
@@ -17,8 +17,8 @@ class ShadowMain extends StatelessWidget {
         borderRadius: borderRadius,
         boxShadow: [
           BoxShadow(
-            color: Theme.of(context).colorScheme.outline.withOpacity(0.25),
-            offset: const Offset(0, 4),
+            color: Theme.of(context).colorScheme.outline.withOpacity(0.3),
+            offset: const Offset(0, -4),
             spreadRadius: 0,
             blurRadius: 18,
           ),
