@@ -39,6 +39,7 @@ class WelcomeScreen extends StatelessWidget {
                     children: [
                       Row(
                         mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Text(
                             'Kickstart ',
@@ -53,7 +54,7 @@ class WelcomeScreen extends StatelessWidget {
                           Text(
                             'Your Style',
                             style: TextStyle(
-                              fontSize: 32,
+                              fontSize: 40,
                               fontWeight: FontWeight.w600,
                               color: Theme.of(context).colorScheme.primary,
                             ),
