@@ -82,7 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                               if (!_isLogin)
                                 const SizedBox(
-                                  height: 14,
+                                  height: 12,
                                 ),
                               InputText(
                                 key: const ValueKey('email'),
@@ -94,7 +94,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 }),
                               ),
                               const SizedBox(
-                                height: 14,
+                                height: 12,
                               ),
                               InputText(
                                 key: const ValueKey('password'),
@@ -106,7 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 },
                               ),
                               const SizedBox(
-                                height: 24,
+                                height: 14,
                               ),
                               PrimaryButton(
                                 label: _isLogin ? 'Login' : 'Sign up',

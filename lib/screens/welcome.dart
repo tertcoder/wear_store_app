@@ -93,14 +93,14 @@ class WelcomeScreen extends StatelessWidget {
                   ),
                   onPressed: () {
                     Navigator.of(context).push(
-                      // MaterialPageRoute(
-                      //   builder: (context) => const LoginScreen(),
-                      // ),
-                      CupertinoPageRoute(
-                        builder: (context) {
-                          return const LoginScreen();
-                        },
+                      MaterialPageRoute(
+                        builder: (context) => const LoginScreen(),
                       ),
+                      // CupertinoPageRoute(
+                      //   builder: (context) {
+                      //     return const LoginScreen();
+                      //   },
+                      // ),
                     );
                   },
                   child: Row(
