@@ -53,7 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 elevation: 0,
                 child: SingleChildScrollView(
                   child: Padding(
-                    padding: const EdgeInsets.all(32),
+                    padding: const EdgeInsets.symmetric(horizontal: 32),
                     child: Column(
                       children: [
                         Form(
@@ -196,6 +196,9 @@ class _LoginScreenState extends State<LoginScreen> {
                               Theme.of(context).colorScheme.onInverseSurface,
                           icon: SvgPicture.asset(_facebook,
                               semanticsLabel: 'Facebook Icon'),
+                        ),
+                        const SizedBox(
+                          height: 20,
                         ),
                       ],
                     ),
