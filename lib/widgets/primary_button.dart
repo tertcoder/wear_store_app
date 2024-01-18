@@ -4,11 +4,16 @@ import 'package:wear_store_app/widgets/shadow_main.dart';
 
 class PrimaryButton extends StatelessWidget {
   const PrimaryButton(
-      {super.key, required this.label, this.backgroundColor, this.icon});
+      {super.key,
+      required this.label,
+      this.backgroundColor,
+      this.icon,
+      required this.handleClick});
 
   final String label;
   final Color? backgroundColor;
   final SvgPicture? icon;
+  final void Function() handleClick;
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +60,7 @@ class PrimaryButton extends StatelessWidget {
               ),
             ),
           ),
-          onPressed: () {},
+          onPressed: handleClick,
           child: content,
         ),
       ),

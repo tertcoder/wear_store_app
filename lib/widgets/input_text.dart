@@ -1,10 +1,24 @@
 import 'package:flutter/material.dart';
 
-class InputText extends StatelessWidget {
-  const InputText({super.key, required this.label, this.isHide = false});
+enum TypeInput { email, password, text }
 
+class InputText extends StatelessWidget {
+  const InputText({
+    super.key,
+    required this.label,
+    // this.handleValidator,
+    this.handleOnSave,
+    this.isHide = false,
+    this.keyboardType,
+    this.type = TypeInput.text,
+  });
+
+  final TypeInput type;
   final String label;
   final bool isHide;
+  final TextInputType? keyboardType;
+  // final String? Function(String? value)? handleValidator;
+  final void Function(String? newValue)? handleOnSave;
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +53,29 @@ class InputText extends StatelessWidget {
         ),
       ),
       obscureText: isHide,
+      keyboardType: keyboardType,
+      validator: (value) {
+        if (type == TypeInput.email) {
+          if (value == null || value.trim().isEmpty || !value.contains('@')) {
+            return 'Please enter a valid email address';
+          }
+          return null;
+        }
+        if (type == TypeInput.password) {
+          if (value == null || value.trim().isEmpty || value.length < 6) {
+            return 'Please enter at least 6 characters.';
+          }
+          return null;
+        }
+
+        if (value == null || value.trim().isEmpty) {
+          return 'Please fill this field.';
+        }
+        return null;
+      },
+      onSaved: (newValue) {
+        handleOnSave!(newValue);
+      },
     );
   }
 }

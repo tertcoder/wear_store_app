@@ -15,7 +15,23 @@ class _LoginScreenState extends State<LoginScreen> {
   final String _google = 'assets/icons/google.svg';
   final String _facebook = 'assets/icons/facebook.svg';
 
+  final _form = GlobalKey<FormState>();
+
   bool _isLogin = true;
+
+  String _enteredEmail = '';
+  String _enteredPassword = '';
+  String _enteredFirstname = '';
+  String _enteredLastname = '';
+
+  void _onSubmit() {
+    final isValid = _form.currentState!.validate();
+    print(isValid);
+    if (!isValid) return;
+    _form.currentState!.save();
+    print(_enteredEmail);
+    print(_enteredPassword);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,30 +55,61 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 28,
                   ),
                   Form(
+                    key: _form,
                     child: Column(
                       children: [
-                        if (!_isLogin) const InputText(label: 'Firstname'),
+                        if (!_isLogin)
+                          InputText(
+                            key: const ValueKey('firstname'),
+                            label: 'Firstname',
+                            handleOnSave: (newValue) {
+                              _enteredFirstname = newValue!;
+                            },
+                          ),
                         if (!_isLogin)
                           const SizedBox(
                             height: 14,
                           ),
-                        if (!_isLogin) const InputText(label: 'Lastname'),
+                        if (!_isLogin)
+                          InputText(
+                            key: const ValueKey('lastname'),
+                            label: 'Lastname',
+                            handleOnSave: (newValue) {
+                              _enteredLastname = newValue!;
+                            },
+                          ),
                         if (!_isLogin)
                           const SizedBox(
                             height: 14,
                           ),
-                        const InputText(label: 'Email address'),
+                        InputText(
+                          key: const ValueKey('email'),
+                          type: TypeInput.email,
+                          label: 'Email address',
+                          keyboardType: TextInputType.emailAddress,
+                          handleOnSave: ((newValue) {
+                            _enteredEmail = newValue!;
+                          }),
+                        ),
                         const SizedBox(
                           height: 14,
                         ),
-                        const InputText(
+                        InputText(
+                          key: const ValueKey('password'),
+                          type: TypeInput.password,
                           label: 'Password',
                           isHide: true,
+                          handleOnSave: (newValue) {
+                            _enteredPassword = newValue!;
+                          },
                         ),
                         const SizedBox(
                           height: 24,
                         ),
-                        PrimaryButton(label: _isLogin ? "Login" : "Sign up"),
+                        PrimaryButton(
+                          label: _isLogin ? 'Login' : 'Sign up',
+                          handleClick: _onSubmit,
+                        ),
                       ],
                     ),
                   ),
@@ -125,23 +172,25 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   PrimaryButton(
                     label:
-                        _isLogin ? "Log in with Google" : 'Sign up with Google',
+                        _isLogin ? 'Log in with Google' : 'Sign up with Google',
                     backgroundColor:
                         Theme.of(context).colorScheme.onInverseSurface,
                     icon: SvgPicture.asset(_google,
-                        semanticsLabel: "Google Icon"),
+                        semanticsLabel: 'Google Icon'),
+                    handleClick: () {},
                   ),
                   const SizedBox(
                     height: 14,
                   ),
                   PrimaryButton(
+                    handleClick: () {},
                     label: _isLogin
-                        ? "Log in with Facebook"
-                        : "Sign up with Facebook",
+                        ? 'Log in with Facebook'
+                        : 'Sign up with Facebook',
                     backgroundColor:
                         Theme.of(context).colorScheme.onInverseSurface,
                     icon: SvgPicture.asset(_facebook,
-                        semanticsLabel: "Facebook Icon"),
+                        semanticsLabel: 'Facebook Icon'),
                   ),
                   const Spacer(),
                 ],
