@@ -31,171 +31,178 @@ class _LoginScreenState extends State<LoginScreen> {
     _form.currentState!.save();
     print(_enteredEmail);
     print(_enteredPassword);
+    _form.currentState!.reset();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-      body: SafeArea(
+      body: Center(
         child: SingleChildScrollView(
-          child: SizedBox(
-            height: MediaQuery.of(context).size.height,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 32),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  const Spacer(),
-                  SvgPicture.asset(
-                    _logo,
-                    semanticsLabel: 'WearStore Logo',
-                  ),
-                  const SizedBox(
-                    height: 28,
-                  ),
-                  Form(
-                    key: _form,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SvgPicture.asset(
+                _logo,
+                semanticsLabel: 'WearStore Logo',
+              ),
+              Card(
+                borderOnForeground: false,
+                color: Theme.of(context).colorScheme.primaryContainer,
+                elevation: 0,
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.all(32),
                     child: Column(
                       children: [
-                        if (!_isLogin)
-                          InputText(
-                            key: const ValueKey('firstname'),
-                            label: 'Firstname',
-                            handleOnSave: (newValue) {
-                              _enteredFirstname = newValue!;
-                            },
+                        Form(
+                          key: _form,
+                          child: Column(
+                            children: [
+                              if (!_isLogin)
+                                InputText(
+                                  key: const ValueKey('firstname'),
+                                  label: 'Firstname',
+                                  handleOnSave: (newValue) {
+                                    _enteredFirstname = newValue!;
+                                  },
+                                ),
+                              if (!_isLogin)
+                                const SizedBox(
+                                  height: 14,
+                                ),
+                              if (!_isLogin)
+                                InputText(
+                                  key: const ValueKey('lastname'),
+                                  label: 'Lastname',
+                                  handleOnSave: (newValue) {
+                                    _enteredLastname = newValue!;
+                                  },
+                                ),
+                              if (!_isLogin)
+                                const SizedBox(
+                                  height: 14,
+                                ),
+                              InputText(
+                                key: const ValueKey('email'),
+                                type: TypeInput.email,
+                                label: 'Email address',
+                                keyboardType: TextInputType.emailAddress,
+                                handleOnSave: ((newValue) {
+                                  _enteredEmail = newValue!;
+                                }),
+                              ),
+                              const SizedBox(
+                                height: 14,
+                              ),
+                              InputText(
+                                key: const ValueKey('password'),
+                                type: TypeInput.password,
+                                label: 'Password',
+                                isHide: true,
+                                handleOnSave: (newValue) {
+                                  _enteredPassword = newValue!;
+                                },
+                              ),
+                              const SizedBox(
+                                height: 24,
+                              ),
+                              PrimaryButton(
+                                label: _isLogin ? 'Login' : 'Sign up',
+                                handleClick: _onSubmit,
+                              ),
+                            ],
                           ),
-                        if (!_isLogin)
-                          const SizedBox(
-                            height: 14,
-                          ),
-                        if (!_isLogin)
-                          InputText(
-                            key: const ValueKey('lastname'),
-                            label: 'Lastname',
-                            handleOnSave: (newValue) {
-                              _enteredLastname = newValue!;
-                            },
-                          ),
-                        if (!_isLogin)
-                          const SizedBox(
-                            height: 14,
-                          ),
-                        InputText(
-                          key: const ValueKey('email'),
-                          type: TypeInput.email,
-                          label: 'Email address',
-                          keyboardType: TextInputType.emailAddress,
-                          handleOnSave: ((newValue) {
-                            _enteredEmail = newValue!;
-                          }),
+                        ),
+                        const SizedBox(
+                          height: 12,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              _isLogin
+                                  ? 'I don’t have an account?'
+                                  : 'Already have an account?',
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.outline,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w300,
+                              ),
+                            ),
+                            TextButton(
+                              style: TextButton.styleFrom(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 3,
+                                  horizontal: 8,
+                                ),
+                                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                minimumSize: Size.zero,
+                                splashFactory: NoSplash
+                                    .splashFactory, //** To disable the onTap background
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  _isLogin = !_isLogin;
+                                });
+                              },
+                              child: Text(
+                                _isLogin ? 'Sign up' : 'Login',
+                                style: TextStyle(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onPrimaryContainer,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.normal,
+                                  decoration: TextDecoration.underline,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 16,
+                        ),
+                        Divider(
+                          color: Theme.of(context)
+                              .colorScheme
+                              .outline
+                              .withOpacity(0.25),
+                          height: 1,
+                        ),
+                        const SizedBox(
+                          height: 16,
+                        ),
+                        PrimaryButton(
+                          label: _isLogin
+                              ? 'Log in with Google'
+                              : 'Sign up with Google',
+                          backgroundColor:
+                              Theme.of(context).colorScheme.onInverseSurface,
+                          icon: SvgPicture.asset(_google,
+                              semanticsLabel: 'Google Icon'),
+                          handleClick: () {},
                         ),
                         const SizedBox(
                           height: 14,
                         ),
-                        InputText(
-                          key: const ValueKey('password'),
-                          type: TypeInput.password,
-                          label: 'Password',
-                          isHide: true,
-                          handleOnSave: (newValue) {
-                            _enteredPassword = newValue!;
-                          },
-                        ),
-                        const SizedBox(
-                          height: 24,
-                        ),
                         PrimaryButton(
-                          label: _isLogin ? 'Login' : 'Sign up',
-                          handleClick: _onSubmit,
+                          handleClick: () {},
+                          label: _isLogin
+                              ? 'Log in with Facebook'
+                              : 'Sign up with Facebook',
+                          backgroundColor:
+                              Theme.of(context).colorScheme.onInverseSurface,
+                          icon: SvgPicture.asset(_facebook,
+                              semanticsLabel: 'Facebook Icon'),
                         ),
                       ],
                     ),
                   ),
-                  const SizedBox(
-                    height: 12,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        _isLogin
-                            ? 'I don’t have an account?'
-                            : 'Already have an account?',
-                        style: TextStyle(
-                          color: Theme.of(context).colorScheme.outline,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w300,
-                        ),
-                      ),
-                      TextButton(
-                        style: TextButton.styleFrom(
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 3,
-                            horizontal: 8,
-                          ),
-                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                          minimumSize: Size.zero,
-                          splashFactory: NoSplash
-                              .splashFactory, //** To disable the onTap background
-                        ),
-                        onPressed: () {
-                          setState(() {
-                            _isLogin = !_isLogin;
-                          });
-                        },
-                        child: Text(
-                          _isLogin ? 'Sign up' : 'Login',
-                          style: TextStyle(
-                            color: Theme.of(context)
-                                .colorScheme
-                                .onPrimaryContainer,
-                            fontSize: 14,
-                            fontWeight: FontWeight.normal,
-                            decoration: TextDecoration.underline,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  Divider(
-                    color:
-                        Theme.of(context).colorScheme.outline.withOpacity(0.25),
-                    height: 1,
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  PrimaryButton(
-                    label:
-                        _isLogin ? 'Log in with Google' : 'Sign up with Google',
-                    backgroundColor:
-                        Theme.of(context).colorScheme.onInverseSurface,
-                    icon: SvgPicture.asset(_google,
-                        semanticsLabel: 'Google Icon'),
-                    handleClick: () {},
-                  ),
-                  const SizedBox(
-                    height: 14,
-                  ),
-                  PrimaryButton(
-                    handleClick: () {},
-                    label: _isLogin
-                        ? 'Log in with Facebook'
-                        : 'Sign up with Facebook',
-                    backgroundColor:
-                        Theme.of(context).colorScheme.onInverseSurface,
-                    icon: SvgPicture.asset(_facebook,
-                        semanticsLabel: 'Facebook Icon'),
-                  ),
-                  const Spacer(),
-                ],
+                ),
               ),
-            ),
+            ],
           ),
         ),
       ),
