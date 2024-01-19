@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wear_store_app/screens/welcome.dart';
+import 'package:wear_store_app/screens/home.dart';
 
 final theme = ThemeData(
   colorScheme: ColorScheme.fromSeed(
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: theme,
-      home: const WelcomeScreen(),
+      home: Home(),
     );
   }
 }
