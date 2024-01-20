@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:wear_store_app/widgets/brands_container.dart';
+import 'package:wear_store_app/widgets/hero_container.dart';
+import 'package:wear_store_app/widgets/our_collections_container.dart';
 import 'package:wear_store_app/widgets/shadow_main.dart';
 import 'package:wear_store_app/widgets/user_avatar.dart';
 
@@ -120,6 +123,7 @@ class Home extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.fromLTRB(16, 24, 16, 12),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const UserAvatar(),
               const SizedBox(
@@ -172,45 +176,15 @@ class Home extends StatelessWidget {
               const SizedBox(
                 height: 32,
               ),
-              ShadowMain(
-                borderRadius: BorderRadius.circular(10),
-                child: Container(
-                  width: double.infinity,
-                  height: 185,
-                  decoration: BoxDecoration(
-                    image: const DecorationImage(
-                      image: AssetImage('assets/images/home.webp'),
-                      alignment: Alignment.centerRight,
-                      // colorFilter: ColorFilter.mode(
-                      //     Colors.transparent, BlendMode.darken,),
-                    ),
-                    gradient: LinearGradient(
-                      colors: [
-                        Theme.of(context).colorScheme.primary.withOpacity(0.9),
-                        const Color(0xFFFB923C).withOpacity(0.5)
-                      ],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(
-                      color: Theme.of(context).colorScheme.outline,
-                      width: 1,
-                    ),
-                  ),
-                  child: Stack(children: [
-                    // Positioned(
-                    //   right: 0,
-                    //   bottom: 0,
-                    //   child: Image.asset(
-                    //     'assets/images/home.webp',
-                    //     color: Color(0xFF8A5022),
-                    //     colorBlendMode: BlendMode.darken,
-                    //   ),
-                    // ),
-                  ]),
-                ),
+              const HeroContainer(),
+              const SizedBox(
+                height: 46,
               ),
+              const BrandsContainer(),
+              const SizedBox(
+                height: 36,
+              ),
+              const OurCollectionContainer(),
             ],
           ),
         ),
