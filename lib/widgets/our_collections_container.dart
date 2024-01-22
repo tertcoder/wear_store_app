@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wear_store_app/providers/shoes_provider.dart';
+import 'package:wear_store_app/widgets/shoe_item.dart';
 
 class OurCollectionContainer extends ConsumerWidget {
   const OurCollectionContainer({super.key});
@@ -19,7 +20,10 @@ class OurCollectionContainer extends ConsumerWidget {
       ),
       itemCount: 4,
       itemBuilder: (context, index) {
-        return Card(,child: Text(shoesCollection[index].name));
+        return ShoeItem(
+          imageSrc: shoesCollection[index].image,
+          shoeName: shoesCollection[index].name,
+        );
       },
     );
   }
