@@ -21,7 +21,3 @@ class Shoe {
   final String name;
   final double price;
 }
-
-List<Shoe> Shoes=[
-  Shoe(brand: 'Nike', image: image, name: name, price: price)
-]
