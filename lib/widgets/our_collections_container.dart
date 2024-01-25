@@ -17,6 +17,7 @@ class OurCollectionContainer extends ConsumerWidget {
         crossAxisCount: 2,
         crossAxisSpacing: 10,
         mainAxisSpacing: 10,
+        childAspectRatio: 0.7,
       ),
       itemCount: 4,
       itemBuilder: (context, index) {

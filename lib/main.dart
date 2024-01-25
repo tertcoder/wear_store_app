@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:wear_store_app/screens/home.dart';
+import 'package:wear_store_app/widgets/main_app.dart';
 
 final theme = ThemeData(
   // colorScheme: ColorScheme.fromSeed(
@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: theme,
-      home: Home(),
+      home: const MainApp(),
     );
   }
 }
