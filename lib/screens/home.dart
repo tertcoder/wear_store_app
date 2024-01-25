@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+
 import 'package:wear_store_app/widgets/brands_container.dart';
 import 'package:wear_store_app/widgets/hero_container.dart';
 import 'package:wear_store_app/widgets/our_collections_container.dart';
@@ -21,7 +22,7 @@ class Home extends StatelessWidget {
       key: _scaffoldKey,
       backgroundColor: Theme.of(context).colorScheme.surface,
       drawer: const Drawer(
-        child: Text("Custom Drawer!"),
+        child: SafeArea(child: Text("Custom Drawer!")),
       ),
       appBar: AppBar(
         clipBehavior: Clip.none,

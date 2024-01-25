@@ -61,12 +61,6 @@ class ShoesNotifier extends StateNotifier<List<Shoe>> {
             ),
             Shoe(
               brand: 'Adidas',
-              image: 'assets/images/shoes/image-10.jpg',
-              name: 'Shoes 10',
-              price: 85.64,
-            ),
-            Shoe(
-              brand: 'Adidas',
               image: 'assets/images/shoes/image-11.webp',
               name: 'Shoes 11',
               price: 85.64,
