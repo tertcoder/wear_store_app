@@ -1,23 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:glass_kit/glass_kit.dart';
+import 'package:wear_store_app/models/shoe.dart';
 
 import 'package:wear_store_app/widgets/shadow_main.dart';
 
 class ShoeItem extends StatelessWidget {
-  const ShoeItem({super.key, required this.imageSrc, required this.shoeName});
+  const ShoeItem({super.key, required this.shoe});
 
-  final String imageSrc;
-  final String shoeName;
+  final Shoe shoe;
 
   @override
   Widget build(BuildContext context) {
+    const toWishlist = 'assets/icons/to_wishlist_icon.svg';
+    const toCart = 'assets/icons/to_cart_icon.svg';
     return ShadowMain(
       borderRadius: BorderRadius.circular(10),
       child: Container(
         clipBehavior: Clip.antiAliasWithSaveLayer,
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(imageSrc),
+            image: AssetImage(shoe.image),
             fit: BoxFit.cover,
           ),
           borderRadius: BorderRadius.circular(10),
@@ -33,6 +36,10 @@ class ShoeItem extends StatelessWidget {
               child: GlassContainer(
                 height: 60,
                 width: double.infinity,
+                padding: const EdgeInsets.symmetric(
+                  vertical: 4,
+                  horizontal: 12,
+                ),
                 color: Theme.of(context)
                     .colorScheme
                     .primaryContainer
@@ -41,6 +48,37 @@ class ShoeItem extends StatelessWidget {
                     Theme.of(context).colorScheme.outline.withOpacity(0.5),
                 blur: 10,
                 borderRadius: BorderRadius.circular(10),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            shoe.name,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 14,
+                            ),
+                          ),
+                          Text(
+                            '\$${shoe.price}',
+                            style: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          SvgPicture.asset(toWishlist),
+                          SvgPicture.asset(toCart),
+                        ],
+                      ),
+                    ]),
               ),
             ),
           ],
@@ -49,37 +87,3 @@ class ShoeItem extends StatelessWidget {
     );
   }
 }
-
-// Container(
-//                 clipBehavior: Clip.antiAliasWithSaveLayer,
-//                 decoration: BoxDecoration(
-//                   borderRadius: const BorderRadius.only(
-//                     topRight: Radius.circular(10),
-//                     topLeft: Radius.circular(10),
-//                   ),
-//                   border: Border(
-//                     top: BorderSide(
-//                       color: Theme.of(context).colorScheme.outline,
-//                       width: 1,
-//                     ),
-//                   ),
-//                 ),
-//                 child: BackdropFilter(
-//                   filter: ImageFilter.blur(
-//                     sigmaX: 10,
-//                     sigmaY: 10,
-//                   ),
-//                   child: Container(
-//                     height: 60,
-//                     padding:
-//                         const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-//                     decoration: BoxDecoration(
-//                       color: Theme.of(context)
-//                           .colorScheme
-//                           .primaryContainer
-//                           .withOpacity(0.40),
-//                     ),
-//                     child: Text(shoeName),
-//                   ),
-//                 ),
-//               ),

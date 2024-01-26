@@ -28,7 +28,7 @@ class MainApp extends StatelessWidget {
               Theme.of(context).colorScheme.onPrimaryContainer,
         ),
         PersistentBottomNavBarItem(
-          icon: const HeroIcon(HeroIcons.buildingStorefront),
+          icon: const HeroIcon(HeroIcons.shoppingBag),
           activeColorPrimary: Theme.of(context).colorScheme.primary,
           inactiveColorPrimary:
               Theme.of(context).colorScheme.onPrimaryContainer,

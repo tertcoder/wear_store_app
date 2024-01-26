@@ -13,7 +13,7 @@ class OurCollectionContainer extends ConsumerWidget {
 
     return GridView.builder(
       shrinkWrap: true,
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         crossAxisSpacing: 10,
         mainAxisSpacing: 10,
@@ -21,10 +21,7 @@ class OurCollectionContainer extends ConsumerWidget {
       ),
       itemCount: 4,
       itemBuilder: (context, index) {
-        return ShoeItem(
-          imageSrc: shoesCollection[index].image,
-          shoeName: shoesCollection[index].name,
-        );
+        return ShoeItem(shoe: shoesCollection[index]);
       },
     );
   }
