@@ -12,7 +12,7 @@ class UserProfileScreen extends StatelessWidget {
       backgroundColor: Colors.orangeAccent,
       appBar: MainAppBar(
         scaffoldKey: _scaffoldKey,
-        title: '',
+        title: 'Profile',
       ),
     );
   }

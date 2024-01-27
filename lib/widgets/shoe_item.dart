@@ -25,7 +25,9 @@ class ShoeItem extends StatelessWidget {
           ),
           borderRadius: BorderRadius.circular(10),
           border: Border.all(
-              width: 1, color: Theme.of(context).colorScheme.outline),
+            width: 1,
+            color: Theme.of(context).colorScheme.outline,
+          ),
         ),
         child: Stack(
           children: [
