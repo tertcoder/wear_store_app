@@ -17,7 +17,7 @@ class ShoeItem extends StatelessWidget {
     return ShadowMain(
       borderRadius: BorderRadius.circular(10),
       child: Container(
-        clipBehavior: Clip.antiAliasWithSaveLayer,
+        // clipBehavior: Clip.antiAliasWithSaveLayer,
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage(shoe.image),
@@ -45,10 +45,10 @@ class ShoeItem extends StatelessWidget {
                 color: Theme.of(context)
                     .colorScheme
                     .primaryContainer
-                    .withOpacity(0.7),
+                    .withOpacity(0.5),
                 borderColor:
                     Theme.of(context).colorScheme.outline.withOpacity(0.5),
-                blur: 10,
+                blur: 2,
                 borderRadius: BorderRadius.circular(10),
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
