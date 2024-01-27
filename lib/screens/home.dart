@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:wear_store_app/screens/store.dart';
 
 import 'package:wear_store_app/widgets/brands_container.dart';
 import 'package:wear_store_app/widgets/hero_container.dart';
@@ -29,7 +30,7 @@ class HomeScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(16, 24, 16, 12),
+          padding: const EdgeInsets.fromLTRB(16, 24, 16, 24),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -56,7 +57,15 @@ class HomeScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: InkWell(
-                    onTap: () {},
+                    // onTap: () {
+                    //   Navigator.of(context).push(
+                    //     MaterialPageRoute(
+                    //       builder: (context) => StoreScreen(
+                    //         keyBoardFocus: true,
+                    //       ),
+                    //     ),
+                    //   );
+                    // },
                     splashFactory: NoSplash.splashFactory,
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -125,7 +134,11 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(
                 height: 18,
               ),
-              const OurCollectionContainer(),
+              const OurCollectionContainer(
+                itemLength: 4,
+                shrinkWrap: true,
+                shuffle: true,
+              ),
             ],
           ),
         ),

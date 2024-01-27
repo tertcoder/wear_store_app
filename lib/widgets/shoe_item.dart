@@ -47,7 +47,7 @@ class ShoeItem extends StatelessWidget {
                     .primaryContainer
                     .withOpacity(0.5),
                 borderColor:
-                    Theme.of(context).colorScheme.outline.withOpacity(0.5),
+                    Theme.of(context).colorScheme.outline.withOpacity(0.1),
                 blur: 2,
                 borderRadius: BorderRadius.circular(10),
                 child: Row(

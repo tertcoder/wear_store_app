@@ -17,6 +17,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
     const hamburgerSvg = 'assets/icons/hamburger.svg';
 
     return AppBar(
+      scrolledUnderElevation: 0,
       clipBehavior: Clip.none,
       backgroundColor: Theme.of(context).colorScheme.surface,
       automaticallyImplyLeading: false,
