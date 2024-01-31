@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 
 class FilterItem extends StatelessWidget {
-  const FilterItem({super.key, required this.label, this.isActive = false});
+  const FilterItem(
+      {super.key,
+      required this.label,
+      this.isActive = false,
+      required this.onPressed});
   final String label;
   final bool isActive;
+  final void Function() onPressed;
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: onPressed,
       child: Text(label),
       style: ElevatedButton.styleFrom(
         // tapTargetSize: MaterialTapTargetSize.shrinkWrap,

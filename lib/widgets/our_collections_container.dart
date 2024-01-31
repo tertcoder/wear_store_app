@@ -23,6 +23,7 @@ class OurCollectionContainer extends ConsumerWidget {
         : ref.read(shoesProvider);
 
     return GridView.builder(
+      clipBehavior: Clip.antiAlias,
       shrinkWrap: shrinkWrap,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,

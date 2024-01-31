@@ -4,11 +4,18 @@ import 'package:wear_store_app/widgets/filter_item.dart';
 import 'package:wear_store_app/widgets/main_app_bar.dart';
 import 'package:wear_store_app/widgets/our_collections_container.dart';
 
-class StoreScreen extends StatelessWidget {
-  StoreScreen({super.key, this.keyBoardFocus = false});
+class StoreScreen extends StatefulWidget {
+  const StoreScreen({super.key, this.keyBoardFocus = false});
 
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
   final bool keyBoardFocus;
+
+  @override
+  State<StoreScreen> createState() => _StoreScreenState();
+}
+
+class _StoreScreenState extends State<StoreScreen> {
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+  String _activeFilter = 'All';
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +43,7 @@ class StoreScreen extends StatelessWidget {
                     fontWeight: FontWeight.normal,
                     color: Theme.of(context).colorScheme.onPrimaryContainer,
                   ),
-                  canRequestFocus: keyBoardFocus,
+                  canRequestFocus: widget.keyBoardFocus,
                   cursorColor: Theme.of(context).colorScheme.onPrimaryContainer,
                   decoration: InputDecoration(
                     hintText: "Search your pair...",
@@ -67,33 +74,93 @@ class StoreScreen extends StatelessWidget {
             const SizedBox(
               height: 12,
             ),
-            const SizedBox(
+            SizedBox(
               width: double.infinity,
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
-                    FilterItem(label: "All"),
+                    FilterItem(
+                      label: 'All',
+                      isActive: _activeFilter == 'All',
+                      onPressed: () {
+                        if (_activeFilter != 'All') {
+                          setState(() {
+                            _activeFilter = 'All';
+                          });
+                        }
+                      },
+                    ),
                     SizedBox(
                       width: 10,
                     ),
-                    FilterItem(label: "Nike"),
+                    FilterItem(
+                      label: "Nike",
+                      isActive: _activeFilter == 'Nike',
+                      onPressed: () {
+                        if (_activeFilter != 'Nike') {
+                          setState(() {
+                            _activeFilter = 'Nike';
+                          });
+                        }
+                      },
+                    ),
                     SizedBox(
                       width: 10,
                     ),
-                    FilterItem(label: "Adidas"),
+                    FilterItem(
+                      label: "Adidas",
+                      isActive: _activeFilter == 'Adidas',
+                      onPressed: () {
+                        if (_activeFilter != 'Adidas') {
+                          setState(() {
+                            _activeFilter = 'Adidas';
+                          });
+                        }
+                      },
+                    ),
                     SizedBox(
                       width: 10,
                     ),
-                    FilterItem(label: "Reebok"),
+                    FilterItem(
+                      label: "Reebok",
+                      isActive: _activeFilter == 'Reebok',
+                      onPressed: () {
+                        if (_activeFilter != 'Reebok') {
+                          setState(() {
+                            _activeFilter = 'Reebok';
+                          });
+                        }
+                      },
+                    ),
                     SizedBox(
                       width: 10,
                     ),
-                    FilterItem(label: "Vans"),
+                    FilterItem(
+                      label: "Vans",
+                      isActive: _activeFilter == 'Vans',
+                      onPressed: () {
+                        if (_activeFilter != 'Vans') {
+                          setState(() {
+                            _activeFilter = 'Vans';
+                          });
+                        }
+                      },
+                    ),
                     SizedBox(
                       width: 10,
                     ),
-                    FilterItem(label: "Other"),
+                    FilterItem(
+                      label: "Other",
+                      isActive: _activeFilter == 'Other',
+                      onPressed: () {
+                        if (_activeFilter != 'Other') {
+                          setState(() {
+                            _activeFilter = 'Other';
+                          });
+                        }
+                      },
+                    ),
                   ],
                 ),
               ),
