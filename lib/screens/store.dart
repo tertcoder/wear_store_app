@@ -5,9 +5,9 @@ import 'package:wear_store_app/widgets/main_app_bar.dart';
 import 'package:wear_store_app/widgets/our_collections_container.dart';
 
 class StoreScreen extends StatefulWidget {
-  const StoreScreen({super.key, this.keyBoardFocus = false});
-
-  final bool keyBoardFocus;
+  const StoreScreen({
+    super.key,
+  });
 
   @override
   State<StoreScreen> createState() => _StoreScreenState();
@@ -43,7 +43,6 @@ class _StoreScreenState extends State<StoreScreen> {
                     fontWeight: FontWeight.normal,
                     color: Theme.of(context).colorScheme.onPrimaryContainer,
                   ),
-                  canRequestFocus: widget.keyBoardFocus,
                   cursorColor: Theme.of(context).colorScheme.onPrimaryContainer,
                   decoration: InputDecoration(
                     hintText: "Search your pair...",
@@ -91,7 +90,7 @@ class _StoreScreenState extends State<StoreScreen> {
                         }
                       },
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     FilterItem(
@@ -105,7 +104,7 @@ class _StoreScreenState extends State<StoreScreen> {
                         }
                       },
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     FilterItem(
@@ -119,7 +118,7 @@ class _StoreScreenState extends State<StoreScreen> {
                         }
                       },
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     FilterItem(
@@ -133,7 +132,7 @@ class _StoreScreenState extends State<StoreScreen> {
                         }
                       },
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     FilterItem(
@@ -147,7 +146,7 @@ class _StoreScreenState extends State<StoreScreen> {
                         }
                       },
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     FilterItem(
