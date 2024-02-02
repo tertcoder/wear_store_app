@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
+import 'package:wear_store_app/widgets/cart.dart';
 import 'package:wear_store_app/widgets/shadow_main.dart';
 
 class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -105,9 +107,17 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
                     ),
                     Align(
                       alignment: Alignment.center,
-                      child: SvgPicture.asset(
-                        cartSvg,
-                        semanticsLabel: 'Cart',
+                      child: GestureDetector(
+                        onTap: () => {
+                          pushNewScreen(
+                            context,
+                            screen: Cart(),
+                          ),
+                        },
+                        child: SvgPicture.asset(
+                          cartSvg,
+                          semanticsLabel: 'Cart',
+                        ),
                       ),
                     )
                   ],

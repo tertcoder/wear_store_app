@@ -30,7 +30,7 @@ class _StoreScreenState extends ConsumerState<StoreScreen> {
         title: 'Store',
       ),
       body: Padding(
-        padding: const EdgeInsets.fromLTRB(8, 12, 8, 24),
+        padding: const EdgeInsets.fromLTRB(8, 12, 8, 0),
         child: Column(
           children: [
             Stack(
@@ -169,11 +169,11 @@ class _StoreScreenState extends ConsumerState<StoreScreen> {
               ),
             ),
             const SizedBox(
-              height: 16,
+              height: 4,
             ),
             Expanded(
               child: CollectionsContainer(shoesCollection),
-            )
+            ),
           ],
         ),
       ),

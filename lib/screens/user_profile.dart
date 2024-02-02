@@ -54,7 +54,7 @@ class UserProfileScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15),
                 child: Container(
                   width: double.infinity,
-                  padding: const EdgeInsets.fromLTRB(12, 28, 12, 20),
+                  padding: const EdgeInsets.fromLTRB(12, 28, 12, 0),
                   decoration: BoxDecoration(
                       color: Theme.of(context).colorScheme.surface,
                       borderRadius: const BorderRadius.only(
@@ -97,6 +97,9 @@ class UserProfileScreen extends StatelessWidget {
                           height: 24,
                         ),
                         ShoesSummary(),
+                        const SizedBox(
+                          height: 30,
+                        ),
                       ],
                     ),
                   ),

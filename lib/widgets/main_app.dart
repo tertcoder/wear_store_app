@@ -5,6 +5,7 @@ import 'package:wear_store_app/screens/home.dart';
 import 'package:wear_store_app/screens/store.dart';
 import 'package:wear_store_app/screens/user_profile.dart';
 import 'package:wear_store_app/screens/wishlist.dart';
+import 'package:wear_store_app/widgets/new_shoe.dart';
 import 'package:wear_store_app/widgets/shadow_inverse.dart';
 
 class MainApp extends StatelessWidget {
@@ -21,8 +22,8 @@ class MainApp extends StatelessWidget {
         context,
         screens: [
           HomeScreen(),
-          StoreScreen(),
-          StoreScreen(),
+          const StoreScreen(),
+          const NewShoe(),
           WishlistScreen(),
           UserProfileScreen(),
         ],
@@ -40,14 +41,17 @@ class MainApp extends StatelessWidget {
                 Theme.of(context).colorScheme.onPrimaryContainer,
           ),
           PersistentBottomNavBarItem(
-            icon: HeroIcon(
-              HeroIcons.plus,
-              color: Theme.of(context).colorScheme.onPrimaryContainer,
-            ),
-            activeColorPrimary: Theme.of(context).colorScheme.primaryContainer,
-            inactiveColorPrimary:
-                Theme.of(context).colorScheme.primaryContainer,
-          ),
+              icon: HeroIcon(
+                HeroIcons.plus,
+                color: Theme.of(context).colorScheme.onPrimaryContainer,
+              ),
+              activeColorPrimary:
+                  Theme.of(context).colorScheme.primaryContainer,
+              inactiveColorPrimary:
+                  Theme.of(context).colorScheme.primaryContainer,
+              onPressed: (context) {
+                pushNewScreen(context!, screen: NewShoe());
+              }),
           PersistentBottomNavBarItem(
             icon: const HeroIcon(HeroIcons.heart),
             activeColorPrimary: Theme.of(context).colorScheme.primary,
