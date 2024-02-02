@@ -1,23 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:wear_store_app/models/shoe.dart';
 
 import 'package:wear_store_app/providers/shoes_provider.dart';
 import 'package:wear_store_app/providers/wishlist_provider.dart';
 import 'package:wear_store_app/widgets/shoe_item.dart';
 
-class CollectionsContainer extends ConsumerWidget {
+class CollectionsContainer extends StatelessWidget {
   const CollectionsContainer(
-    this.type, {
+    this.shoesCollection, {
     super.key,
   });
 
-  final String type;
+  final List<Shoe> shoesCollection;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    var shoesCollection = ref.watch(shoesProvider);
-    if (type == "wishlist") shoesCollection = ref.watch(wishlistProvider);
-
+  Widget build(BuildContext context) {
     return GridView.builder(
       clipBehavior: Clip.antiAlias,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

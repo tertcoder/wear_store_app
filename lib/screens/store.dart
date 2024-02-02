@@ -1,24 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:wear_store_app/providers/shoes_provider.dart';
+
 import 'package:wear_store_app/widgets/filter_item.dart';
 import 'package:wear_store_app/widgets/main_app_bar.dart';
 import 'package:wear_store_app/widgets/collections_container.dart';
 
-class StoreScreen extends StatefulWidget {
+class StoreScreen extends ConsumerStatefulWidget {
   const StoreScreen({
     super.key,
   });
 
   @override
-  State<StoreScreen> createState() => _StoreScreenState();
+  ConsumerState<StoreScreen> createState() => _StoreScreenState();
 }
 
-class _StoreScreenState extends State<StoreScreen> {
+class _StoreScreenState extends ConsumerState<StoreScreen> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   String _activeFilter = 'All';
 
   @override
   Widget build(BuildContext context) {
+    final shoesCollection = ref.watch(shoesProvider);
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: MainAppBar(
@@ -167,8 +171,8 @@ class _StoreScreenState extends State<StoreScreen> {
             const SizedBox(
               height: 16,
             ),
-            const Expanded(
-              child: CollectionsContainer("store"),
+            Expanded(
+              child: CollectionsContainer(shoesCollection),
             )
           ],
         ),
