@@ -3,11 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wear_store_app/widgets/main_app.dart';
 
 final theme = ThemeData(
-  // colorScheme: ColorScheme.fromSeed(
-  //   seedColor: const Color.fromARGB(255, 251, 146, 60),
-  //   brightness: Brightness.light,
-  //   surface: const Color(0xFFFFF8F5),
-  // ),
+
   colorScheme: const ColorScheme.light(
     onPrimaryContainer: Color(0xFF301400),
     outline: Color(0xFF84746A),
@@ -21,7 +17,6 @@ final theme = ThemeData(
     onError: Color(0xFFFFFFFF),
     background: Color(0xFFFFF8F6),
   ),
-  // textTheme: GoogleFonts.oswaldTextTheme(),
   fontFamily: 'Oswald',
 );
 
