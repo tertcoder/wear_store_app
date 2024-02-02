@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:wear_store_app/providers/shoes_provider.dart';
 import 'package:wear_store_app/screens/store.dart';
 
 import 'package:wear_store_app/widgets/brands_container.dart';
@@ -7,15 +9,17 @@ import 'package:wear_store_app/widgets/hero_container.dart';
 import 'package:wear_store_app/widgets/main_app_bar.dart';
 import 'package:wear_store_app/widgets/our_collections_container.dart';
 import 'package:wear_store_app/widgets/shadow_main.dart';
+import 'package:wear_store_app/widgets/shoe_item.dart';
 import 'package:wear_store_app/widgets/user_avatar.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends ConsumerWidget {
   HomeScreen({super.key});
 
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final shoesCollections = ref.watch(shoesProvider.notifier).shuffledShoe;
     const searchSvg = 'assets/icons/search.svg';
 
     return Scaffold(
@@ -134,11 +138,25 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(
                 height: 18,
               ),
-              const OurCollectionContainer(
-                itemLength: 4,
-                shrinkWrap: true,
-                shuffle: true,
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    for (var i = 0; i < 4; i++)
+                      Container(
+                        width: 180,
+                        height: 220,
+                        margin: const EdgeInsets.only(right: 16),
+                        child: ShoeItem(shoe: shoesCollections[i]),
+                      ),
+                  ],
+                ),
               ),
+              // const OurCollectionContainer(
+              //   itemLength: 4,
+              //   shrinkWrap: true,
+              //   shuffle: true,
+              // ),
             ],
           ),
         ),

@@ -1,23 +1,31 @@
 import 'package:flutter/material.dart';
+
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:glass_kit/glass_kit.dart';
+import 'package:another_flushbar/flushbar.dart';
+
 import 'package:wear_store_app/models/shoe.dart';
+import 'package:wear_store_app/providers/wishlist_provider.dart';
 
 import 'package:wear_store_app/widgets/shadow_main.dart';
 
-class ShoeItem extends StatelessWidget {
+class ShoeItem extends ConsumerWidget {
   const ShoeItem({super.key, required this.shoe});
 
   final Shoe shoe;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    ref.watch(wishlistProvider);
     const toWishlist = 'assets/icons/to_wishlist_icon.svg';
+    const inWishlist = 'assets/icons/in_wishlist_icon.svg';
     const toCart = 'assets/icons/to_cart_icon.svg';
+
+    final isInWishlist = ref.read(wishlistProvider.notifier).isInWishlist(shoe);
     return ShadowMain(
       borderRadius: BorderRadius.circular(10),
       child: Container(
-        // clipBehavior: Clip.antiAliasWithSaveLayer,
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage(shoe.image),
@@ -76,7 +84,31 @@ class ShoeItem extends StatelessWidget {
                       Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          SvgPicture.asset(toWishlist),
+                          InkWell(
+                            onTap: () {
+                              final wasAdded = ref
+                                  .read(wishlistProvider.notifier)
+                                  .toogleWishlist(shoe);
+
+                              Flushbar(
+                                messageText: Text(wasAdded
+                                    ? "Added to wishlist"
+                                    : "Removed from wishlist"),
+                                flushbarPosition: FlushbarPosition.TOP,
+                                flushbarStyle: FlushbarStyle.GROUNDED,
+                                forwardAnimationCurve:
+                                    Curves.fastEaseInToSlowEaseOut,
+                                backgroundColor: Theme.of(context)
+                                    .colorScheme
+                                    .primaryContainer
+                                    .withOpacity(0.7),
+                                barBlur: 4,
+                                duration: const Duration(seconds: 2),
+                              ).show(context);
+                            },
+                            child: SvgPicture.asset(
+                                isInWishlist ? inWishlist : toWishlist),
+                          ),
                           SvgPicture.asset(toCart),
                         ],
                       ),

@@ -1,4 +1,6 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<!--<manifest xmlns:android="http://schemas.android.com/apk/res/android">-->
+    <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+        package="com.wear_store_app">
     <application
         android:label="wear_store_app"
         android:name="${applicationName}"

@@ -168,9 +168,7 @@ class _StoreScreenState extends State<StoreScreen> {
               height: 16,
             ),
             const Expanded(
-              child: OurCollectionContainer(
-                shrinkWrap: false,
-              ),
+              child: OurCollectionContainer(),
             )
           ],
         ),
