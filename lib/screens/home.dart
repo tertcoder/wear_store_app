@@ -7,7 +7,7 @@ import 'package:wear_store_app/screens/store.dart';
 import 'package:wear_store_app/widgets/brands_container.dart';
 import 'package:wear_store_app/widgets/hero_container.dart';
 import 'package:wear_store_app/widgets/main_app_bar.dart';
-import 'package:wear_store_app/widgets/our_collections_container.dart';
+import 'package:wear_store_app/widgets/collections_container.dart';
 import 'package:wear_store_app/widgets/shadow_main.dart';
 import 'package:wear_store_app/widgets/shoe_item.dart';
 import 'package:wear_store_app/widgets/user_avatar.dart';
@@ -152,11 +152,6 @@ class HomeScreen extends ConsumerWidget {
                   ],
                 ),
               ),
-              // const OurCollectionContainer(
-              //   itemLength: 4,
-              //   shrinkWrap: true,
-              //   shuffle: true,
-              // ),
             ],
           ),
         ),

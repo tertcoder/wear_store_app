@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:wear_store_app/widgets/filter_item.dart';
 import 'package:wear_store_app/widgets/main_app_bar.dart';
-import 'package:wear_store_app/widgets/our_collections_container.dart';
+import 'package:wear_store_app/widgets/collections_container.dart';
 
 class StoreScreen extends StatefulWidget {
   const StoreScreen({
@@ -26,7 +26,7 @@ class _StoreScreenState extends State<StoreScreen> {
         title: 'Store',
       ),
       body: Padding(
-        padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
+        padding: const EdgeInsets.fromLTRB(8, 12, 8, 24),
         child: Column(
           children: [
             Stack(
@@ -168,7 +168,7 @@ class _StoreScreenState extends State<StoreScreen> {
               height: 16,
             ),
             const Expanded(
-              child: OurCollectionContainer(),
+              child: CollectionsContainer("store"),
             )
           ],
         ),
