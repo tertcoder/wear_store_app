@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:wear_store_app/widgets/shadow_main.dart';
 
@@ -17,9 +18,13 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
     const hamburgerSvg = 'assets/icons/hamburger.svg';
 
     return AppBar(
+      systemOverlayStyle: SystemUiOverlayStyle(
+        statusBarColor:
+            Theme.of(context).colorScheme.onPrimaryContainer.withOpacity(0.25),
+      ),
       scrolledUnderElevation: 0,
       clipBehavior: Clip.none,
-      backgroundColor: Theme.of(context).colorScheme.surface,
+      backgroundColor: Colors.transparent,
       automaticallyImplyLeading: false,
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

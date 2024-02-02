@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:wear_store_app/models/shoe.dart';
 
-import 'package:wear_store_app/providers/shoes_provider.dart';
-import 'package:wear_store_app/providers/wishlist_provider.dart';
 import 'package:wear_store_app/widgets/shoe_item.dart';
 
 class CollectionsContainer extends StatelessWidget {

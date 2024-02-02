@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wear_store_app/widgets/main_app.dart';
 
 final theme = ThemeData(
-
   colorScheme: const ColorScheme.light(
     onPrimaryContainer: Color(0xFF301400),
     outline: Color(0xFF84746A),

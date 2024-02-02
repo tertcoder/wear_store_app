@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:wear_store_app/providers/shoes_provider.dart';
-import 'package:wear_store_app/screens/store.dart';
 
 import 'package:wear_store_app/widgets/brands_container.dart';
 import 'package:wear_store_app/widgets/hero_container.dart';
 import 'package:wear_store_app/widgets/main_app_bar.dart';
-import 'package:wear_store_app/widgets/collections_container.dart';
 import 'package:wear_store_app/widgets/shadow_main.dart';
-import 'package:wear_store_app/widgets/shoe_item.dart';
+import 'package:wear_store_app/widgets/shoes_summary.dart';
 import 'package:wear_store_app/widgets/user_avatar.dart';
 
 class HomeScreen extends ConsumerWidget {
@@ -19,7 +16,6 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final shoesCollections = ref.watch(shoesProvider.notifier).shuffledShoe;
     const searchSvg = 'assets/icons/search.svg';
 
     return Scaffold(
@@ -138,20 +134,7 @@ class HomeScreen extends ConsumerWidget {
               const SizedBox(
                 height: 18,
               ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    for (var i = 0; i < 4; i++)
-                      Container(
-                        width: 180,
-                        height: 220,
-                        margin: const EdgeInsets.only(right: 16),
-                        child: ShoeItem(shoe: shoesCollections[i]),
-                      ),
-                  ],
-                ),
-              ),
+              ShoesSummary(),
             ],
           ),
         ),
