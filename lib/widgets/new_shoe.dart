@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:wear_store_app/widgets/input_text.dart';
@@ -19,11 +21,12 @@ class _NewShoeState extends State<NewShoe> {
   String _enteredShoebrand = '';
   double _enteredShoeprice = 0;
   String _enteredShoedescription = '';
+  File? _selectedImage;
 
   void _addNewShoe() {
     final isValid = _form.currentState!.validate();
     print(isValid);
-    if (!isValid) return;
+    if (!isValid || _selectedImage == null) return;
     _form.currentState!.save();
     print(_enteredShoename);
     print(_enteredShoebrand);
@@ -47,7 +50,11 @@ class _NewShoeState extends State<NewShoe> {
                   const SizedBox(
                     height: 55,
                   ),
-                  ShoeImagePicker(),
+                  ShoeImagePicker(
+                    onPickImage: (pickedImage) {
+                      _selectedImage = pickedImage;
+                    },
+                  ),
                   const SizedBox(
                     height: 40,
                   ),
