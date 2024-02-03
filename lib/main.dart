@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:wear_store_app/widgets/main_app.dart';
+import 'package:wear_store_app/widgets/new_shoe.dart';
 
 final theme = ThemeData(
   colorScheme: const ColorScheme.light(
     onPrimaryContainer: Color(0xFF301400),
     outline: Color(0xFF84746A),
     primaryContainer: Color(0xFFFFDCC5),
+    inversePrimary: Color(0xFFFFB783),
     surfaceVariant: Color(0xFFF3DFD2),
     secondary: Color(0xFF755845),
     primary: Color(0xFF845022),
@@ -35,7 +37,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: theme,
-      home: const MainApp(),
+      home: const NewShoe(),
     );
   }
 }

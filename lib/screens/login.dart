@@ -26,7 +26,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void _onSubmit() {
     final isValid = _form.currentState!.validate();
-    print(isValid);
     if (!isValid) return;
     _form.currentState!.save();
     print(_enteredEmail);

@@ -9,6 +9,7 @@ class InputText extends StatelessWidget {
     // this.handleValidator,
     this.handleOnSave,
     this.isHide = false,
+    this.expands = false,
     this.keyboardType,
     this.type = TypeInput.text,
   });
@@ -16,6 +17,8 @@ class InputText extends StatelessWidget {
   final TypeInput type;
   final String label;
   final bool isHide;
+  final bool expands;
+
   final TextInputType? keyboardType;
   // final String? Function(String? value)? handleValidator;
   final void Function(String? newValue)? handleOnSave;
@@ -23,6 +26,10 @@ class InputText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      expands: expands,
+      maxLines: expands ? null : 1,
+      textAlignVertical:
+          expands ? TextAlignVertical.top : TextAlignVertical.center,
       style: TextStyle(
         fontWeight: FontWeight.normal,
         color: Theme.of(context).colorScheme.onPrimaryContainer,
@@ -30,6 +37,7 @@ class InputText extends StatelessWidget {
       cursorColor: Theme.of(context).colorScheme.onPrimaryContainer,
       decoration: InputDecoration(
         labelText: label,
+        alignLabelWithHint: true,
         labelStyle: TextStyle(
           color: Theme.of(context).colorScheme.outline,
           fontSize: 14,
