@@ -1,9 +1,11 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:wear_store_app/widgets/input_text.dart';
 import 'package:wear_store_app/widgets/primary_button.dart';
+import 'package:wear_store_app/widgets/pushed_screen_app_bar.dart';
 import 'package:wear_store_app/widgets/shadow_main.dart';
 import 'package:wear_store_app/widgets/shoe_image_picker.dart';
 
@@ -39,83 +41,82 @@ class _NewShoeState extends State<NewShoe> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 32),
-          child: SingleChildScrollView(
-            child: SizedBox(
-              width: double.infinity,
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 55,
-                  ),
-                  ShoeImagePicker(
-                    onPickImage: (pickedImage) {
-                      _selectedImage = pickedImage;
-                    },
-                  ),
-                  const SizedBox(
-                    height: 40,
-                  ),
-                  Form(
-                    key: _form,
-                    child: Column(
-                      children: [
-                        InputText(
-                          label: "Shoe name",
+      appBar: const PushedScreenAppBar(title: "New Shoe"),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24),
+        child: SingleChildScrollView(
+          child: SizedBox(
+            width: double.infinity,
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 12,
+                ),
+                ShoeImagePicker(
+                  onPickImage: (pickedImage) {
+                    _selectedImage = pickedImage;
+                  },
+                ),
+                const SizedBox(
+                  height: 40,
+                ),
+                Form(
+                  key: _form,
+                  child: Column(
+                    children: [
+                      InputText(
+                        label: "Shoe name",
+                        handleOnSave: (newValue) {
+                          _enteredShoename = newValue!;
+                        },
+                      ),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      InputText(
+                        label: "Shoe brand",
+                        handleOnSave: (newValue) {
+                          _enteredShoebrand = newValue!;
+                        },
+                      ),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      InputText(
+                        label: "Price (\$)",
+                        keyboardType: TextInputType.number,
+                        handleOnSave: (newValue) {
+                          _enteredShoeprice = double.parse(newValue!);
+                        },
+                      ),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 200,
+                        child: InputText(
+                          expands: true,
+                          label: "Description",
                           handleOnSave: (newValue) {
-                            _enteredShoename = newValue!;
+                            _enteredShoedescription = newValue!;
                           },
                         ),
-                        const SizedBox(
-                          height: 12,
-                        ),
-                        InputText(
-                          label: "Shoe brand",
-                          handleOnSave: (newValue) {
-                            _enteredShoebrand = newValue!;
-                          },
-                        ),
-                        const SizedBox(
-                          height: 12,
-                        ),
-                        InputText(
-                          label: "Price (\$)",
-                          keyboardType: TextInputType.number,
-                          handleOnSave: (newValue) {
-                            _enteredShoeprice = double.parse(newValue!);
-                          },
-                        ),
-                        const SizedBox(
-                          height: 12,
-                        ),
-                        SizedBox(
-                          width: double.infinity,
-                          height: 200,
-                          child: InputText(
-                            expands: true,
-                            label: "Description",
-                            handleOnSave: (newValue) {
-                              _enteredShoedescription = newValue!;
-                            },
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        PrimaryButton(
-                          label: "Add Shoe",
-                          handleClick: _addNewShoe,
-                        )
-                      ],
-                    ),
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      PrimaryButton(
+                        label: "Add Shoe",
+                        handleClick: _addNewShoe,
+                      )
+                    ],
                   ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                ],
-              ),
+                ),
+                const SizedBox(
+                  height: 18,
+                ),
+              ],
             ),
           ),
         ),

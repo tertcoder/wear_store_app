@@ -21,8 +21,6 @@ class _ShoeImagePickerState extends State<ShoeImagePicker> {
   void _pickImage() async {
     final pickedImage = await ImagePicker().pickImage(
       source: ImageSource.gallery,
-      maxWidth: 150,
-      imageQuality: 150,
     );
     if (pickedImage == null) return;
 
