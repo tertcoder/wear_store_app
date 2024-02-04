@@ -3,15 +3,22 @@ import 'package:flutter_svg/svg.dart';
 import 'package:wear_store_app/widgets/shadow_main.dart';
 
 class PrimaryButton extends StatelessWidget {
-  const PrimaryButton(
-      {super.key,
-      required this.label,
-      this.backgroundColor,
-      this.icon,
-      required this.handleClick});
+  const PrimaryButton({
+    super.key,
+    required this.label,
+    required this.handleClick,
+    this.backgroundColor,
+    this.icon,
+    this.foregroundColor,
+    this.fontSize,
+    this.height,
+  });
 
   final String label;
   final Color? backgroundColor;
+  final Color? foregroundColor;
+  final double? fontSize;
+  final double? height;
   final SvgPicture? icon;
   final void Function() handleClick;
 
@@ -20,9 +27,10 @@ class PrimaryButton extends StatelessWidget {
     Widget content = Text(
       label,
       style: TextStyle(
-        color: Theme.of(context).colorScheme.onPrimaryContainer,
-        fontSize: 18,
-        fontWeight: FontWeight.normal,
+        color:
+            foregroundColor ?? Theme.of(context).colorScheme.onPrimaryContainer,
+        fontSize: fontSize ?? 18,
+        fontWeight: FontWeight.w400,
       ),
     );
     if (icon != null) {
@@ -32,9 +40,10 @@ class PrimaryButton extends StatelessWidget {
           Text(
             label,
             style: TextStyle(
-              color: Theme.of(context).colorScheme.onPrimaryContainer,
-              fontSize: 18,
-              fontWeight: FontWeight.normal,
+              color: foregroundColor ??
+                  Theme.of(context).colorScheme.onPrimaryContainer,
+              fontSize: fontSize ?? 18,
+              fontWeight: FontWeight.w400,
             ),
           ),
           const SizedBox(
@@ -46,7 +55,7 @@ class PrimaryButton extends StatelessWidget {
     }
     return SizedBox(
       width: double.infinity,
-      height: 48,
+      height: height ?? 48,
       child: ShadowMain(
         borderRadius: BorderRadius.circular(10),
         child: ElevatedButton(

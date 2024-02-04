@@ -44,7 +44,7 @@ class PushedScreenAppBar extends StatelessWidget
                 onTap: () {},
                 child: SvgPicture.asset(
                   backIcon,
-                  semanticsLabel: 'Drawer',
+                  semanticsLabel: 'back',
                 ),
               ),
             ),

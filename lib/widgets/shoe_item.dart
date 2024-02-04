@@ -31,7 +31,7 @@ class ShoeItem extends ConsumerWidget {
         onTap: () => {
           pushNewScreen(
             context,
-            screen: ShoeDetails(),
+            screen: ShoeDetails(shoe),
           ),
         },
         child: Hero(

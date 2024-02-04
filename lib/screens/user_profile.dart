@@ -56,16 +56,17 @@ class UserProfileScreen extends StatelessWidget {
                   width: double.infinity,
                   padding: const EdgeInsets.fromLTRB(12, 28, 12, 0),
                   decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.surface,
-                      borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(15),
-                        topRight: Radius.circular(15),
+                    color: Theme.of(context).colorScheme.surface,
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(15),
+                      topRight: Radius.circular(15),
+                    ),
+                    border: Border.fromBorderSide(
+                      BorderSide(
+                        color: Theme.of(context).colorScheme.outline,
                       ),
-                      border: Border.fromBorderSide(
-                        BorderSide(
-                          color: Theme.of(context).colorScheme.outline,
-                        ),
-                      )),
+                    ),
+                  ),
                   child: SingleChildScrollView(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,

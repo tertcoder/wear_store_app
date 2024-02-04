@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:wear_store_app/models/shoe.dart';
 import 'package:wear_store_app/widgets/main_app.dart';
 import 'package:wear_store_app/widgets/new_shoe.dart';
+import 'package:wear_store_app/widgets/shoe_details.dart';
 
 final theme = ThemeData(
   colorScheme: const ColorScheme.light(
@@ -37,7 +39,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: theme,
-      home: const NewShoe(),
+      home: ShoeDetails(Shoe(
+        brand: 'Nike',
+        image: 'assets/images/shoes/image-1.webp',
+        name: 'Shoes 01',
+        price: 79.49,
+      )),
     );
   }
 }
