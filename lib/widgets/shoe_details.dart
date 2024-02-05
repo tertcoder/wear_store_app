@@ -127,7 +127,7 @@ class ShoeDetails extends ConsumerWidget {
                       Text(
                         shoe.name,
                         style: TextStyle(
-                          fontSize: 36,
+                          fontSize: 28,
                           fontWeight: FontWeight.w600,
                           color:
                               Theme.of(context).colorScheme.onPrimaryContainer,
@@ -141,7 +141,7 @@ class ShoeDetails extends ConsumerWidget {
                             child: Text(
                               "\$",
                               style: TextStyle(
-                                fontSize: 18,
+                                fontSize: 14,
                                 fontWeight: FontWeight.w500,
                                 color: Theme.of(context)
                                     .colorScheme
@@ -152,7 +152,7 @@ class ShoeDetails extends ConsumerWidget {
                           Text(
                             "${shoe.price}",
                             style: TextStyle(
-                              fontSize: 28,
+                              fontSize: 24,
                               fontWeight: FontWeight.w500,
                               color: Theme.of(context)
                                   .colorScheme
@@ -209,8 +209,7 @@ class ShoeDetails extends ConsumerWidget {
                       ),
                       PrimaryButton(
                         label: "Add to Cart",
-                        icon: SvgPicture.asset(
-                            'assets/images/icons/to_cart_icon.svg'),
+                        icon: SvgPicture.asset('assets/icons/cart.svg'),
                         handleClick: () {},
                         fontSize: 24,
                         height: 68,

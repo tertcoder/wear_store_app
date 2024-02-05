@@ -4,6 +4,7 @@ import 'package:wear_store_app/models/shoe.dart';
 import 'package:wear_store_app/widgets/main_app.dart';
 import 'package:wear_store_app/widgets/new_shoe.dart';
 import 'package:wear_store_app/widgets/shoe_details.dart';
+import 'package:wear_store_app/widgets/my_cart.dart';
 
 final theme = ThemeData(
   colorScheme: const ColorScheme.light(
@@ -37,14 +38,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: theme,
-      home: ShoeDetails(Shoe(
-        brand: 'Nike',
-        image: 'assets/images/shoes/image-1.webp',
-        name: 'Shoes 01',
-        price: 79.49,
-      )),
-    );
+        debugShowCheckedModeBanner: false,
+        theme: theme,
+        // home: ShoeDetails(Shoe(
+        //   brand: 'Nike',
+        //   image: 'assets/images/shoes/image-1.webp',
+        //   name: 'Shoes 01',
+        //   price: 79.49,
+        // )),
+        home: const MyCart());
   }
 }
