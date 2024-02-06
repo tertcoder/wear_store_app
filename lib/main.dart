@@ -38,14 +38,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: theme,
-        // home: ShoeDetails(Shoe(
-        //   brand: 'Nike',
-        //   image: 'assets/images/shoes/image-1.webp',
-        //   name: 'Shoes 01',
-        //   price: 79.49,
-        // )),
-        home: const MyCart());
+      debugShowCheckedModeBanner: false,
+      theme: theme,
+      // home: ShoeDetails(Shoe(
+      //   brand: 'Nike',
+      //   image: 'assets/images/shoes/image-1.webp',
+      //   name: 'Shoes 01',
+      //   price: 79.49,
+      // )),
+      home: const MyCart(),
+    );
   }
 }

@@ -16,7 +16,7 @@ class CollectionsContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return GridView.builder(
       clipBehavior: Clip.antiAlias,
-      padding: EdgeInsets.only(bottom: 28, top: 24),
+      padding: const EdgeInsets.only(bottom: 28, top: 24),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         crossAxisSpacing: 10,
