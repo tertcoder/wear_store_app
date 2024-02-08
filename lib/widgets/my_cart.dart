@@ -39,6 +39,32 @@ class MyCart extends StatelessWidget {
                     height: 100,
                     fit: BoxFit.cover,
                   ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  const Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text("Shoe 01"),
+                            Text("\$80.87"),
+                            Text("1 pair"),
+                          ],
+                        ),
+                        Padding(
+                          padding: EdgeInsets.all(10),
+                          child: Text("X"),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
