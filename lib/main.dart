@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:wear_store_app/models/shoe.dart';
-import 'package:wear_store_app/widgets/main_app.dart';
-import 'package:wear_store_app/widgets/new_shoe.dart';
-import 'package:wear_store_app/widgets/shoe_details.dart';
+import 'package:wear_store_app/screens/welcome.dart';
+
 import 'package:wear_store_app/widgets/my_cart.dart';
 
 final theme = ThemeData(
@@ -46,7 +44,7 @@ class MyApp extends StatelessWidget {
       //   name: 'Shoes 01',
       //   price: 79.49,
       // )),
-      home: const MyCart(),
+      home: const WelcomeScreen(),
     );
   }
 }

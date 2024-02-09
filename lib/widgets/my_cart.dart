@@ -16,27 +16,27 @@ class MyCart extends ConsumerWidget {
       appBar: const PushedScreenAppBar(
         title: "My Cart",
       ),
-      // body: CartItems.isEmpty
-      //     ? Center(
-      //         child: Text(
-      //           "No items in cart yet...",
-      //           style: TextStyle(
-      //             color: Theme.of(context).colorScheme.outline,
-      //             fontSize: 14,
-      //           ),
-      //         ),
-      //       )
-      //     : ListView.builder(
-      //         itemBuilder: (ctx, idx) => CartItem(
-      //           shoe: CartItems[idx],
-      //         ),
-      //       ),
-      body: ListView(
-        children: const [
-          SizedBox(height: 16),
-          CartItem(),
-        ],
-      ),
+      body: CartItems.isEmpty
+          ? Center(
+              child: Text(
+                "No items in cart yet...",
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.outline,
+                  fontSize: 14,
+                ),
+              ),
+            )
+          : ListView.builder(
+              itemBuilder: (ctx, idx) => CartItem(
+                shoe: CartItems[idx],
+              ),
+            ),
+      // body: ListView(
+      //   children: const [
+      //     SizedBox(height: 16),
+      //     CartItem(),
+      //   ],
+      // ),
     );
   }
 }

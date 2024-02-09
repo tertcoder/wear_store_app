@@ -1,31 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:wear_store_app/models/shoe.dart';
+import 'package:wear_store_app/providers/cart_provider.dart';
 import 'package:wear_store_app/widgets/shadow_main.dart';
 
-class CartItem extends StatelessWidget {
-  const CartItem({super.key, this.shoe});
+class CartItem extends ConsumerWidget {
+  const CartItem({super.key, required this.shoe});
 
-  final Shoe? shoe;
+  final Shoe shoe;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    ref.watch(cartProvider);
+
     var color = Theme.of(context).colorScheme;
+    var deleteIcon = Icon(
+      Icons.delete,
+      color: Theme.of(context).colorScheme.surface,
+      size: 32,
+    );
+
     return Dismissible(
-      key: ValueKey(shoe ?? 1),
+      key: ValueKey(shoe),
+      direction: DismissDirection.endToStart,
       background: Container(
         color: Colors.red,
         child: Padding(
           padding: const EdgeInsets.all(15),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Icon(
-                Icons.delete,
-                color: Theme.of(context).colorScheme.surface,
-                size: 64,
-              ),
-            ],
+          child: Align(
+            alignment: Alignment.centerLeft,
+            child: deleteIcon,
           ),
         ),
       ),
@@ -34,11 +39,14 @@ class CartItem extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(15),
           child: Align(
-              alignment: Alignment.centerLeft,
-              child: Icon(Icons.delete,
-                  color: Theme.of(context).colorScheme.surface)),
+            alignment: Alignment.centerRight,
+            child: deleteIcon,
+          ),
         ),
       ),
+      onDismissed: (direction) {
+        ref.read(cartProvider.notifier).toogleInCart(shoe);
+      },
       child: ShadowMain(
         borderRadius: BorderRadius.circular(10),
         child: Container(

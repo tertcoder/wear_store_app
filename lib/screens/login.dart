@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:wear_store_app/screens/store.dart';
 import 'package:wear_store_app/widgets/input_text.dart';
 import 'package:wear_store_app/widgets/primary_button.dart';
 
@@ -24,13 +25,18 @@ class _LoginScreenState extends State<LoginScreen> {
   String _enteredFirstname = '';
   String _enteredLastname = '';
 
-  void _onSubmit() {
+  void _onSubmit(ctx) {
     final isValid = _form.currentState!.validate();
     if (!isValid) return;
     _form.currentState!.save();
     print(_enteredEmail);
     print(_enteredPassword);
     _form.currentState!.reset();
+    Navigator.of(ctx).pushReplacement(
+      MaterialPageRoute(
+        builder: (context) => StoreScreen(),
+      ),
+    );
   }
 
   @override
@@ -109,7 +115,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                               PrimaryButton(
                                 label: _isLogin ? 'Login' : 'Sign up',
-                                handleClick: _onSubmit,
+                                handleClick: () => _onSubmit(context),
                               ),
                             ],
                           ),

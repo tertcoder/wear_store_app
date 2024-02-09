@@ -16,7 +16,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    const cartSvg = 'assets/icons/cart.svg';
+    const cartSvg = 'assets/icons/to_cart_icon.svg';
     const hamburgerSvg = 'assets/icons/hamburger.svg';
 
     return AppBar(
@@ -109,10 +109,8 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
                       alignment: Alignment.center,
                       child: GestureDetector(
                         onTap: () => {
-                          pushNewScreen(
-                            context,
-                            screen: Cart(),
-                          ),
+                          Navigator.of(context).push(
+                              MaterialPageRoute(builder: (context) => Cart()))
                         },
                         child: SvgPicture.asset(
                           cartSvg,
