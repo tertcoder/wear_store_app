@@ -1,9 +1,9 @@
-import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
+import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:wear_store_app/models/shoe.dart';
 import 'package:wear_store_app/providers/wishlist_provider.dart';
+import 'package:wear_store_app/models/shoe.dart';
 import 'package:wear_store_app/widgets/primary_button.dart';
 import 'package:wear_store_app/widgets/shadow_inverse.dart';
 import 'package:wear_store_app/widgets/shadow_main.dart';

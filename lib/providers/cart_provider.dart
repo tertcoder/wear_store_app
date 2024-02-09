@@ -22,3 +22,7 @@ class CartNotifier extends StateNotifier<List<Shoe>> {
     }
   }
 }
+
+final cartProvider = StateNotifierProvider<CartNotifier, List<Shoe>>(
+  (ref) => CartNotifier(),
+);
