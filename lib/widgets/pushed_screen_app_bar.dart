@@ -41,7 +41,9 @@ class PushedScreenAppBar extends StatelessWidget
             child: Center(
               child: InkWell(
                 splashFactory: NoSplash.splashFactory,
-                onTap: () {},
+                onTap: () {
+                  Navigator.of(context).pop();
+                },
                 child: SvgPicture.asset(
                   backIcon,
                   semanticsLabel: 'back',

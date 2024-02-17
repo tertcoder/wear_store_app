@@ -1,12 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:wear_store_app/widgets/input_text.dart';
 import 'package:wear_store_app/widgets/primary_button.dart';
 import 'package:wear_store_app/widgets/pushed_screen_app_bar.dart';
-import 'package:wear_store_app/widgets/shadow_main.dart';
 import 'package:wear_store_app/widgets/shoe_image_picker.dart';
 
 class NewShoe extends StatefulWidget {
