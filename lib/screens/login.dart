@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:wear_store_app/screens/store.dart';
+import 'package:wear_store_app/screens/home.dart';
 import 'package:wear_store_app/widgets/input_text.dart';
 import 'package:wear_store_app/widgets/primary_button.dart';
 
@@ -34,7 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
     _form.currentState!.reset();
     Navigator.of(ctx).pushReplacement(
       MaterialPageRoute(
-        builder: (context) => StoreScreen(),
+        builder: (context) => HomeScreen(),
       ),
     );
   }

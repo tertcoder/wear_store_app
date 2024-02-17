@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:wear_store_app/screens/welcome.dart';
-
-import 'package:wear_store_app/widgets/my_cart.dart';
+import 'package:wear_store_app/widgets/bottomNavBar/bottom_nav_bar.dart';
 
 final theme = ThemeData(
   colorScheme: const ColorScheme.light(
@@ -44,7 +42,7 @@ class MyApp extends StatelessWidget {
       //   name: 'Shoes 01',
       //   price: 79.49,
       // )),
-      home: const WelcomeScreen(),
+      home: const BottomNavBar(),
     );
   }
 }
