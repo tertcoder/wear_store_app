@@ -24,7 +24,7 @@ class WishlistScreen extends ConsumerWidget {
         child: shoesCollection.isEmpty
             ? Center(
                 child: Text(
-                  "No wished items yet...",
+                  "No Wished Items yet...",
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.outline,
                     fontSize: 14,

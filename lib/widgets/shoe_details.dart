@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:wear_store_app/providers/cart_provider.dart';
 import 'package:wear_store_app/providers/wishlist_provider.dart';
 import 'package:wear_store_app/models/shoe.dart';
 import 'package:wear_store_app/widgets/primary_button.dart';
@@ -16,6 +17,7 @@ class ShoeDetails extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ref.watch(wishlistProvider);
+    ref.watch(cartProvider);
 
     const toWishlist = 'assets/icons/to_wishlist_icon.svg';
     const inWishlist = 'assets/icons/in_wishlist_icon.svg';
@@ -24,6 +26,7 @@ class ShoeDetails extends ConsumerWidget {
     const outlinedStarIcon = 'assets/icons/outlined_star.svg';
 
     final isInWishlist = ref.read(wishlistProvider.notifier).isInWishlist(shoe);
+    final isInCart = ref.read(cartProvider.notifier).isInCart(shoe);
 
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
@@ -82,7 +85,7 @@ class ShoeDetails extends ConsumerWidget {
                     Flushbar(
                       messageText: Text(wasAdded
                           ? "Added to wishlist"
-                          : "Remove from wishlist"),
+                          : "Removed from wishlist"),
                       flushbarPosition: FlushbarPosition.TOP,
                       flushbarStyle: FlushbarStyle.GROUNDED,
                       forwardAnimationCurve: Curves.fastEaseInToSlowEaseOut, //
@@ -210,9 +213,29 @@ class ShoeDetails extends ConsumerWidget {
                         height: 24,
                       ),
                       PrimaryButton(
-                        label: "Add to Cart",
+                        label: isInCart ? "Remove from Cart" : "Add to Cart",
                         icon: SvgPicture.asset('assets/icons/cart.svg'),
-                        handleClick: () {},
+                        handleClick: () {
+                          final wasAdded = ref
+                              .read(cartProvider.notifier)
+                              .toogleInCart(shoe);
+
+                          Flushbar(
+                            messageText: Text(wasAdded
+                                ? "Added to cart"
+                                : "Removed from cart"),
+                            flushbarPosition: FlushbarPosition.TOP,
+                            flushbarStyle: FlushbarStyle.GROUNDED,
+                            forwardAnimationCurve:
+                                Curves.fastEaseInToSlowEaseOut,
+                            backgroundColor: Theme.of(context)
+                                .colorScheme
+                                .primaryContainer
+                                .withOpacity(0.7),
+                            barBlur: 4,
+                            duration: const Duration(seconds: 2),
+                          ).show(context);
+                        },
                         fontSize: 24,
                         height: 68,
                         foregroundColor:

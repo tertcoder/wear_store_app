@@ -66,7 +66,7 @@ class CartItem extends ConsumerWidget {
           child: Row(
             children: [
               Image.asset(
-                "assets/images/shoes/image-7.webp",
+                shoe.image,
                 width: 100,
                 height: 100,
                 fit: BoxFit.cover,
@@ -86,7 +86,7 @@ class CartItem extends ConsumerWidget {
                           height: 10,
                         ),
                         Text(
-                          "Shoe 01",
+                          shoe.name,
                           style: TextStyle(
                             fontSize: 18,
                             color: color.onPrimaryContainer,
@@ -106,7 +106,7 @@ class CartItem extends ConsumerWidget {
                               ),
                             ),
                             Text(
-                              "80.87",
+                              shoe.price.toString(),
                               style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.w500,
