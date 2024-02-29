@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:wear_store_app/widgets/activity.dart';
@@ -12,6 +13,10 @@ class UserProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void logout() async {
+      await FirebaseAuth.instance.signOut();
+    }
+
     return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.primaryContainer,
         appBar: MainAppBar(
@@ -45,6 +50,13 @@ class UserProfileScreen extends StatelessWidget {
                 fontWeight: FontWeight.w500,
                 color: Theme.of(context).colorScheme.onPrimaryContainer,
               ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            FilledButton(
+              onPressed: logout,
+              child: const Text("Logout"),
             ),
             const SizedBox(
               height: 54,

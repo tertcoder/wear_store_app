@@ -12,12 +12,14 @@ class InputText extends StatelessWidget {
     this.expands = false,
     this.keyboardType,
     this.type = TypeInput.text,
+    this.focusNode,
   });
 
   final TypeInput type;
   final String label;
   final bool isHide;
   final bool expands;
+  final FocusNode? focusNode;
 
   final TextInputType? keyboardType;
   // final String? Function(String? value)? handleValidator;
@@ -26,6 +28,7 @@ class InputText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      focusNode: focusNode,
       expands: expands,
       maxLines: expands ? null : 1,
       textAlignVertical:

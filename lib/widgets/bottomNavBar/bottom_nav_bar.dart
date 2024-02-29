@@ -102,7 +102,7 @@ class _BottomNavBarState extends ConsumerState<BottomNavBar> {
                       isScrollControlled: true,
                       context: context,
                       builder: (context) {
-                        return NewShoe();
+                        return const NewShoe();
                       },
                     );
                   },
@@ -161,7 +161,7 @@ class _BottomNavBarState extends ConsumerState<BottomNavBar> {
                     vertical: 20,
                     horizontal: 20,
                   ),
-                  child: activeScreenIndex == 0
+                  child: activeScreenIndex == 3
                       ? SvgPicture.asset(
                           'assets/icons/user.svg',
                           colorFilter: ColorFilter.mode(

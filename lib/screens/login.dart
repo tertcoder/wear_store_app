@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:wear_store_app/screens/home.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:wear_store_app/widgets/input_text.dart';
 import 'package:wear_store_app/widgets/primary_button.dart';
 
@@ -17,6 +19,19 @@ class _LoginScreenState extends State<LoginScreen> {
   final String _facebook = 'assets/icons/facebook.svg';
 
   final _form = GlobalKey<FormState>();
+  final _emailFocusNode = FocusNode();
+  final _passwordFocusNode = FocusNode();
+  final _firstnameFocusNode = FocusNode();
+  final _lastnameFocusNode = FocusNode();
+
+  @override
+  void dispose() {
+    _emailFocusNode.dispose();
+    _passwordFocusNode.dispose();
+    _firstnameFocusNode.dispose();
+    _lastnameFocusNode.dispose();
+    super.dispose();
+  }
 
   bool _isLogin = true;
 
@@ -25,18 +40,49 @@ class _LoginScreenState extends State<LoginScreen> {
   String _enteredFirstname = '';
   String _enteredLastname = '';
 
-  void _onSubmit(ctx) {
+  void _onSubmit() async {
     final isValid = _form.currentState!.validate();
     if (!isValid) return;
     _form.currentState!.save();
-    print(_enteredEmail);
-    print(_enteredPassword);
-    _form.currentState!.reset();
-    Navigator.of(ctx).pushReplacement(
-      MaterialPageRoute(
-        builder: (context) => HomeScreen(),
-      ),
-    );
+    if (_isLogin) {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: _enteredEmail,
+        password: _enteredPassword,
+      );
+      _emailFocusNode.unfocus();
+      _passwordFocusNode.unfocus();
+    } else {
+      print(_enteredEmail);
+      print(_enteredPassword);
+      print(_enteredFirstname);
+      print(_enteredLastname);
+      final userCredentials =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: _enteredEmail,
+        password: _enteredPassword,
+      );
+
+      await FirebaseFirestore.instance
+          .collection("users")
+          .doc(userCredentials.user!.uid)
+          .set({
+        'firstname': _enteredFirstname,
+        'lastname': _enteredLastname,
+        'email': _enteredEmail,
+      });
+
+      _emailFocusNode.unfocus();
+      _passwordFocusNode.unfocus();
+      _firstnameFocusNode.unfocus();
+      _lastnameFocusNode.unfocus();
+    }
+
+    // _form.currentState!.reset();
+    // Navigator.of(ctx).pushReplacement(
+    //   MaterialPageRoute(
+    //     builder: (context) => HomeScreen(),
+    //   ),
+    // );
   }
 
   @override
@@ -67,6 +113,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             children: [
                               if (!_isLogin)
                                 InputText(
+                                  focusNode: _firstnameFocusNode,
                                   key: const ValueKey('firstname'),
                                   label: 'Firstname',
                                   handleOnSave: (newValue) {
@@ -79,6 +126,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                               if (!_isLogin)
                                 InputText(
+                                  focusNode: _lastnameFocusNode,
                                   key: const ValueKey('lastname'),
                                   label: 'Lastname',
                                   handleOnSave: (newValue) {
@@ -90,6 +138,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   height: 12,
                                 ),
                               InputText(
+                                focusNode: _emailFocusNode,
                                 key: const ValueKey('email'),
                                 type: TypeInput.email,
                                 label: 'Email address',
@@ -102,6 +151,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 height: 12,
                               ),
                               InputText(
+                                focusNode: _passwordFocusNode,
                                 key: const ValueKey('password'),
                                 type: TypeInput.password,
                                 label: 'Password',
@@ -115,7 +165,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                               PrimaryButton(
                                 label: _isLogin ? 'Login' : 'Sign up',
-                                handleClick: () => _onSubmit(context),
+                                handleClick: _onSubmit,
                               ),
                             ],
                           ),

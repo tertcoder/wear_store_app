@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:wear_store_app/firebase_options.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:wear_store_app/widgets/auth_page.dart';
+
 import 'package:wear_store_app/widgets/bottomNavBar/bottom_nav_bar.dart';
 
 final theme = ThemeData(
@@ -20,7 +24,11 @@ final theme = ThemeData(
   fontFamily: 'Oswald',
 );
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(
     const ProviderScope(
       child: MyApp(),
@@ -36,13 +44,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: theme,
-      // home: ShoeDetails(Shoe(
-      //   brand: 'Nike',
-      //   image: 'assets/images/shoes/image-1.webp',
-      //   name: 'Shoes 01',
-      //   price: 79.49,
-      // )),
-      home: const BottomNavBar(),
+      home: const AuthPage(),
     );
   }
 }
