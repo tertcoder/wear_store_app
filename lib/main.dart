@@ -1,9 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:wear_store_app/firebase_options.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:wear_store_app/widgets/auth_page.dart';
 
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:wear_store_app/screens/splash_screen.dart';
+import 'package:wear_store_app/screens/welcome.dart';
 import 'package:wear_store_app/widgets/bottomNavBar/bottom_nav_bar.dart';
 
 final theme = ThemeData(
@@ -44,7 +46,18 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: theme,
-      home: const AuthPage(),
+      home: StreamBuilder(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (ctx, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const SplashScreen();
+          }
+          if (snapshot.hasData) {
+            return const SplashScreen();
+          }
+          return const WelcomeScreen();
+        },
+      ),
     );
   }
 }

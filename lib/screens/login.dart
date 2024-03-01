@@ -40,49 +40,64 @@ class _LoginScreenState extends State<LoginScreen> {
   String _enteredFirstname = '';
   String _enteredLastname = '';
 
-  void _onSubmit() async {
+  Future<void> _onSubmit() async {
     final isValid = _form.currentState!.validate();
     if (!isValid) return;
     _form.currentState!.save();
-    if (_isLogin) {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: _enteredEmail,
-        password: _enteredPassword,
-      );
-      _emailFocusNode.unfocus();
-      _passwordFocusNode.unfocus();
-    } else {
-      print(_enteredEmail);
-      print(_enteredPassword);
-      print(_enteredFirstname);
-      print(_enteredLastname);
-      final userCredentials =
-          await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: _enteredEmail,
-        password: _enteredPassword,
-      );
 
-      await FirebaseFirestore.instance
-          .collection("users")
-          .doc(userCredentials.user!.uid)
-          .set({
-        'firstname': _enteredFirstname,
-        'lastname': _enteredLastname,
-        'email': _enteredEmail,
-      });
+    showDialog(
+        context: context,
+        builder: (context) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        });
+    try {
+      if (_isLogin) {
+        await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: _enteredEmail,
+          password: _enteredPassword,
+        );
+        _emailFocusNode.unfocus();
+        _passwordFocusNode.unfocus();
+      } else {
+        final userCredentials =
+            await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: _enteredEmail,
+          password: _enteredPassword,
+        );
 
-      _emailFocusNode.unfocus();
-      _passwordFocusNode.unfocus();
-      _firstnameFocusNode.unfocus();
-      _lastnameFocusNode.unfocus();
+        await FirebaseFirestore.instance
+            .collection("users")
+            .doc(userCredentials.user!.uid)
+            .set({
+          'firstname': _enteredFirstname,
+          'lastname': _enteredLastname,
+          'email': _enteredEmail,
+        });
+
+        _emailFocusNode.unfocus();
+        _passwordFocusNode.unfocus();
+        _firstnameFocusNode.unfocus();
+        _lastnameFocusNode.unfocus();
+      }
+      Navigator.pop(context);
+    } on FirebaseAuthException catch (e) {
+      Navigator.pop(context);
+
+      authErrorMessage(e.message ?? "Authentication Failed");
     }
+  }
 
-    // _form.currentState!.reset();
-    // Navigator.of(ctx).pushReplacement(
-    //   MaterialPageRoute(
-    //     builder: (context) => HomeScreen(),
-    //   ),
-    // );
+  void authErrorMessage(String errorMessage) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(errorMessage),
+        );
+      },
+    );
   }
 
   @override

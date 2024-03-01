@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:wear_store_app/providers/user_provider.dart';
 
 import 'package:wear_store_app/widgets/brands_container.dart';
 import 'package:wear_store_app/widgets/hero_container.dart';
@@ -17,7 +18,7 @@ class HomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     const searchSvg = 'assets/icons/search.svg';
-
+    print(ref.watch(userProvider));
     return Scaffold(
       key: _scaffoldKey,
       backgroundColor: Theme.of(context).colorScheme.surface,
