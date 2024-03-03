@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:wear_store_app/firebase_options.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:wear_store_app/screens/home.dart';
 import 'package:wear_store_app/screens/splash_screen.dart';
 import 'package:wear_store_app/screens/welcome.dart';
 import 'package:wear_store_app/widgets/bottomNavBar/bottom_nav_bar.dart';
@@ -46,14 +47,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: theme,
-      home: StreamBuilder(
+      home: StreamBuilder<User?>(
+        key: const ValueKey("AuthBuilder"),
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (ctx, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const SplashScreen();
           }
           if (snapshot.hasData) {
-            return const SplashScreen();
+            return const BottomNavBar();
           }
           return const WelcomeScreen();
         },

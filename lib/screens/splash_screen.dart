@@ -24,10 +24,20 @@ class SplashScreen extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: const Color(0xFFFB923C),
                     borderRadius: BorderRadius.circular(100),
+                    border: const Border.fromBorderSide(
+                      BorderSide(
+                        color: Color(0xFF28231c),
+                      ),
+                    ),
                   ),
                 ),
                 const SizedBox(width: 12),
-                const Text("Finding the perfect pair for you..."),
+                const Text(
+                  "Finding the perfect pair for you...",
+                  style: TextStyle(
+                    color: Color(0xFF766F6A),
+                  ),
+                ),
               ],
             ),
           ],
