@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:wear_store_app/screens/home.dart';
+import 'package:wear_store_app/widgets/bottomNavBar/bottom_nav_bar.dart';
 import 'package:wear_store_app/widgets/input_text.dart';
 import 'package:wear_store_app/widgets/primary_button.dart';
 
@@ -82,6 +83,11 @@ class _LoginScreenState extends State<LoginScreen> {
         _firstnameFocusNode.unfocus();
         _lastnameFocusNode.unfocus();
       }
+      await Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (ctx) => const BottomNavBar(),
+        ),
+      );
       Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
       Navigator.pop(context);
